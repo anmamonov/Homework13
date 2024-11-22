@@ -5,7 +5,7 @@ class CaesarsCipher():
 
     def __init__(self):
         self.__SYMBOLS = ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh'
-                        'ijklmnopqrstuvwxyz1234567890 !?.')
+                          'ijklmnopqrstuvwxyz1234567890 !?.')
 
     def encrypt(self, msg_cipher, key):
         return str(f'{key}: {self.__cryptographer(msg_cipher, key,
@@ -69,9 +69,19 @@ class CaesarsCipher():
 
 if __name__ == '__main__':
     a = CaesarsCipher()
-    print(a.decrypt('o3zR v..D0?yRA0R8FR8v47w0ER4.R1WdC!sLF5D'))
-    print(a.encrypt('The password to my mailbox is fBIvqX5yjw', key=21))
-    print(a.encrypt('The vacation was a success', key=3))
-    print(a.decrypt_with_key('Wkh.ydfdwlrq.zdv.d.vxffhvv', key=3))
-    print(a.encrypt('The vacation was a success', key=0))
-    print(a.decrypt_with_key('W=kh.ydfdwlrq.zdv.d.vxffhvv', key=3))
+    path_file: str = input("Путь для сохранения файла"
+                           " с результатами шифрования/дешифрования: ")
+    with (open(path_file, mode='w', encoding='utf-8', newline='\n')
+          as file_write):
+        file_write.write(a.decrypt(
+            'o3zR v..D0?yRA0R8FR8v47w0ER4.R1WdC!sLF5D') + '\n')
+        file_write.write(a.encrypt(
+            'The password to my mailbox is fBIvqX5yjw', key=21) + '\n')
+        file_write.write(a.encrypt(
+            'The vacation was a success', key=3) + '\n')
+        file_write.write(a.decrypt_with_key(
+            'Wkh.ydfdwlrq.zdv.d.vxffhvv', key=3) + '\n')
+        file_write.write(a.encrypt(
+            'The vacation was a success', key=0) + '\n')
+        file_write.write(a.decrypt_with_key(
+            'W=kh.ydfdwlrq.zdv.d.vxffhvv', key=3) + '\n')
